@@ -214,7 +214,11 @@ public class Day05{
             int to = Integer.parseInt(line[5]);
             Stack<String> temp = new Stack<String>();
             for(int i = 0; i < moving; i++){
-                stackList.get(to-1).push(stackList.get(from-1).pop());
+                String let = String.valueOf(stackList.get(from-1).pop());
+                temp.push(let);
+            }
+            for(int i = 0; i < moving; i++){
+                stackList.get(to-1).push(temp.pop());
             }
             
             
@@ -227,7 +231,7 @@ public class Day05{
 
     public static void main(String[] args){
         try {
-            part1();
+            part2();
         } catch(Exception e){
             System.out.println(e);
         }
