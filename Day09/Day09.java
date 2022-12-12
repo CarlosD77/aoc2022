@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class Day09{
 
-    public static class Coordinate {
+    public static class Coordinate implements Comparable<Coordinate> {
 
         private int x;
         private int y;
@@ -18,6 +18,14 @@ public class Day09{
 
         public int getX(){
             return this.x;
+        }
+
+        public int compareTo(Coordinate other){
+            if(this.getX() == other.getX() && this.getY() == other.getY()){
+                return 0;
+            }
+
+            return 1;
         }
 
         public int getY(){
@@ -35,10 +43,12 @@ public class Day09{
         Scanner in = new Scanner(new File("sampleInput.txt"));
         Coordinate head = new Coordinate(0,0);
         Coordinate tail = new Coordinate(0,0);
-        TreeSet visited = new TreeSet();
+        TreeSet<Coordinate> visited = new TreeSet<Coordinate>();
         visited.add(head);
         visited.add(tail);
-        
+        for(Coordinate c : visited){
+            System.out.println(c.getX());
+        }
     }
 
     public static void part2() throws IOException {
