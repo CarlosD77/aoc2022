@@ -29,7 +29,7 @@ public class Day09{
         double dist = getDistance(head.getX(), head.getY(), tail.getX(), tail.getY());
         if(dist <= 1){
             return;
-        } else if(dist == Math.sqrt(2)){
+        } else if(dist <= Math.sqrt(2)){
             return;
         } else if(dist == 2){
             if(head.getX() > tail.getX()){
@@ -44,21 +44,26 @@ public class Day09{
                 tail.setY(tail.getY() - 1);
             }
         } else {
-            if(head.getX() - tail.getX() == 2){
+            if(head.getX() - tail.getX() >= 2){
                 tail.setX(tail.getX() + 1);
                 tail.setY(head.getY());
             }
-            if(head.getX() - tail.getX() == -2){
+            else if(head.getX() - tail.getX() <= -2){
                 tail.setX(tail.getX() - 1);
                 tail.setY(head.getY());
             }
-            if(head.getY() - tail.getY() == 2){
+            else if(head.getY() - tail.getY() >= 2){
                 tail.setY(tail.getY() + 1);
                 tail.setX(head.getX());
             }
-            if(head.getY() - tail.getY() == -2){
+            else if(head.getY() - tail.getY() <= -2){
                 tail.setY(tail.getY() - 1);
                 tail.setX(head.getX());
+            } else {
+                System.out.println(head + " " + tail);
+                System.out.println("BAD");
+                Scanner in = new Scanner(System.in);
+                in.nextLine();
             }
         }
     }
@@ -72,6 +77,9 @@ public class Day09{
             this.y = y;
         }
 
+        public String toString() {
+            return "(" + x +", " + y + ")";
+        }
         
 
         public int compareTo(Coordinate other){
@@ -133,7 +141,7 @@ public class Day09{
     }
 
     public static void part2() throws IOException {
-        Scanner in = new Scanner(new File("input.txt"));
+        Scanner in = new Scanner(new File("sampleInput2.txt"));
         ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
         for(int i = 0; i < 10; i++){
             coordinateList.add(new Coordinate(0,0));
@@ -153,9 +161,11 @@ public class Day09{
             }
         }
         System.out.println(visited.size());
-        for(Coordinate c : visited){
-            System.out.println(c.getX() + " " + c.getY());
-        }
+        //System.out.println(coordinateList);
+        //System.out.println(visited);
+        //for(Coordinate c : visited){
+        //    System.out.println(c.getX() + " " + c.getY());
+        //}
     }
 
     public static void main(String[] args){
